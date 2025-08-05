@@ -1,0 +1,78 @@
+:root {
+    --primary-color: #6e00ff;
+    --secondary-color: #ff00aa;
+    --dark-color: #0f0f1a;
+    --light-color: #f8f9fa;
+    --accent-color: #00ffaa;
+}
+
+body {
+    background-color: var(--dark-color);
+    color: var(--light-color);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-image: radial-gradient(circle at 10% 20%, rgba(110, 0, 255, 0.1) 0%, rgba(15, 15, 26, 1) 90%);
+}
+
+.navbar {
+    background-color: rgba(15, 15, 26, 0.9) !important;
+    border-bottom: 1px solid var(--primary-color);
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    transition: all 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: transparent;
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+    transition: all 0.3s;
+}
+
+.btn-secondary:hover {
+    background-color: transparent;
+    border-color: var(--secondary-color);
+    color: var(--secondary-color);
+    transform: translateY(-2px);
+}
+
+
+.gradient-text {
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.nav-link {
+    position: relative;
+    color: var(--light-color) !important;
+    transition: color 0.3s;
+}
+
+.nav-link:hover {
+    color: var(--accent-color) !important;
+}
+
+.nav-link:after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--accent-color);
+    transition: width 0.3s;
+}
+
+.nav-link:hover:after {
+    width: 100%;
+}
