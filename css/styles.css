@@ -44,6 +44,13 @@ body {
     transform: translateY(-2px);
 }
 
+.hero-section {
+    background: linear-gradient(135deg, rgba(110, 0, 255, 0.2), rgba(15, 15, 26, 0.8)), 
+                url('../img/Background.webp') no-repeat center center;
+    background-size: cover;
+    padding: 100px 0;
+    border-bottom: 1px solid var(--primary-color);
+}
 
 .gradient-text {
     background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
