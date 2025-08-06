@@ -9,10 +9,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- Navbar (común a todas las páginas) -->
+
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
         <div class="container">
-            <a class="navbar-brand fw-bold gradient-text" href="index.html">
+            <a class="navbar-brand fw-bold gradient-text" href="#">
                 <i class="fas fa-gamepad me-2"></i>CESETEC - ORI
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -24,27 +24,27 @@
                         <a class="nav-link active" href="index.html">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#productos">Productos</a>
+                        <a class="nav-link" href="pages/productos.html">Productos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#servicios">Servicios</a>
+                        <a class="nav-link" href="pages/servicios.html">Servicios</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#torneos">Torneos</a>
+                        <a class="nav-link" href="pages/torneos.html">Torneos</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="pages/contacto.html">Contacto</a>
                     </li>
                 </ul>
                 <div class="ms-lg-3 mt-3 mt-lg-0">
-                    <a href="#login.html" class="btn btn-outline-primary me-2">Iniciar Sesión</a>
-                    <a href="#registro.html" class="btn btn-primary">Registrarse</a>
+                    <a href="pages/login.html" class="btn btn-outline-primary me-2">Iniciar Sesión</a>
+                    <a href="pages/registro.html" class="btn btn-primary">Registrarse</a>
                 </div>
             </div>
         </div>
     </nav>
 
-      <!-- Hero Section -->
+    
     <section id="inicio" class="hero-section text-center">
         <div class="container">
             <div class="row justify-content-center">
@@ -64,7 +64,58 @@
         </div>
     </section>
 
+    
+    <section class="py-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-4 text-center">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Recargas Instantáneas</h3>
+                    <p class="text-muted">Obtén tus monedas virtuales, skins y paquetes en segundos después del pago.</p>
+                </div>
+                <div class="col-md-4 text-center">
+                    <div class="feature-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <h3>Torneos Exclusivos</h3>
+                    <p class="text-muted">Participa en competencias organizadas con premios en efectivo y en juego.</p>
+                </div>
+                <div class="col-md-4 text-center">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Servicios Garantizados</h3>
+                    <p class="text-muted">Transacciones seguras con protección de datos y soporte 24/7.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="text-center">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <h3 class="gradient-text mb-4"><i class="fas fa-gamepad me-2"></i>CESETEC - ORI</h3>
+                    <p class="text-muted mb-4">La plataforma líder en recargas gaming y organización de torneos competitivos.</p>
+                    <div class="mb-4">
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-discord"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitch"></i></a>
+                    </div>
+                    <p class="text-muted small mb-0">© 2025 CESETEC - ORI. Todos los derechos reservados.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/main.js"></script>
+
 </body>
 </html>
