@@ -3,7 +3,9 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\GameController;
 
+Route::apiResource('games', GameController::class);
 // Ruta para registrar usuario
 Route::post('/register', [AuthController::class, 'register']);
 
