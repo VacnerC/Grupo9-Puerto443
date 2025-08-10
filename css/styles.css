@@ -44,6 +44,49 @@ body {
     transform: translateY(-2px);
 }
 
+.card {
+    background-color: rgba(30, 30, 46, 0.7);
+    border: 1px solid rgba(110, 0, 255, 0.3);
+    border-radius: 10px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(110, 0, 255, 0.2);
+    border-color: var(--primary-color);
+}
+
+.game-card .card-img-top {
+    height: 120px;
+    object-fit: cover;
+    border-bottom: 2px solid var(--primary-color);
+}
+
+.tournament-card .card-img-top {
+    height: 180px;
+    object-fit: cover;
+    border-bottom: 2px solid var(--secondary-color);
+}
+
+.section-title {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 30px;
+}
+
+.section-title:after {
+    content: '';
+    position: absolute;
+    width: 50%;
+    height: 3px;
+    bottom: -10px;
+    left: 0;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    border-radius: 3px;
+}
+
 .hero-section {
     background: linear-gradient(135deg, rgba(110, 0, 255, 0.2), rgba(15, 15, 26, 0.8)), 
                 url('../img/Background.webp') no-repeat center center;
@@ -56,10 +99,6 @@ body {
     font-size: 2.5rem;
     color: var(--accent-color);
     margin-bottom: 15px;
-}
-
-.text-muted {
-    color: var( --light-color) !important;
 }
 
 .gradient-text {
@@ -87,6 +126,10 @@ footer {
     transform: translateY(-3px);
 }
 
+.text-muted{
+    color: var(--light-color) !important;
+}
+
 .nav-link {
     position: relative;
     color: var(--light-color) !important;
@@ -110,4 +153,52 @@ footer {
 
 .nav-link:hover:after {
     width: 100%;
+}
+
+.badge-premium {
+    background: linear-gradient(90deg, #ff8a00, #ff0058);
+    color: white;
+    font-weight: bold;
+}
+
+.bg-gradient {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.pulse-animation {
+    animation: pulse 2s infinite;
+}
+
+/* Estilos específicos para login/registro */
+.auth-card {
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.auth-card .card-body {
+    padding: 2.5rem;
+}
+
+.form-label{
+    color: var(--light-color) !important;
+}
+.form-check-label{
+    color: var(--light-color) !important;
+}
+
+.form-control.bg-dark {
+    background-color: rgba(30, 30, 46, 0.7) !important;
+    border-color: rgba(110, 0, 255, 0.3);
+    color: var(--light-color);
+}
+
+.form-control.bg-dark:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.25rem rgba(110, 0, 255, 0.25);
 }
