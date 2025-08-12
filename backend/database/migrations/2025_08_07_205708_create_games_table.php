@@ -28,6 +28,25 @@ return new class extends Migration
         
         */
 
+
+        //modelo para crear usuarios
+        /**-
+         * 
+        {
+        "name": "Juan",
+        "email": "juan@example.com",
+        "password": "12345678",
+        "password_confirmation": "12345678"
+        }
+        */
+
+        //modelo para ver usuarios con tokens-metodo POST-user
+        /**-
+         * 
+        "email": "edy@example.com",
+        "password": "12345678"
+        */
+
     }
 
     /**
