@@ -58,6 +58,16 @@ body {
     border-color: var(--primary-color);
 }
 
+.card-body .card-title{
+
+    color: var(--light-color);
+}
+
+.form-control bg-dark text-light border-dark{
+    color: var(--light-color);
+    place-content: var(--light-color);
+}
+
 .game-card .card-img-top {
     height: 120px;
     object-fit: cover;
