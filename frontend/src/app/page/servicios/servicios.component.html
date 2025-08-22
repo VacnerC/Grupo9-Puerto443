@@ -1,0 +1,190 @@
+<section id="recargas" class="py-5 bg-dark">
+  <div class="container">
+    <h2 class="text-center section-title">Servicios de Recargas Disponibles</h2>
+    <div class="d-flex justify-content-end mb-3" *ngIf="isUserLoggedIn">
+      <button class="btn btn-success" (click)="mostrarFormulario()">Agregar Servicio</button>
+    </div>
+    <p class="text-center text-muted mb-5">
+      Selecciona tu juego favorito y recarga ahora
+    </p>
+    <div class="row g-4">
+      <div *ngFor="let servicio of servicios" class="col-md-4 col-lg-3">
+        <div class="card game-card h-100">
+          <img [src]="servicio.imagen_url" class="card-img-top" [alt]="servicio.nombre"/>
+          <div class="card-body">
+            <h5 class="card-title">{{ servicio.nombre }}</h5>
+            <p class="card-text text-muted">{{ servicio.descripcion }}</p>
+            <div class="d-grid gap-2">
+              <a (click)="mostrarModal(servicio)" class="btn btn-primary btn-sm">Solicitar</a>
+              <div *ngIf="isUserLoggedIn" class="mt-2 d-flex justify-content-between">
+                <button (click)="mostrarModalEditar(servicio)" class="btn btn-warning btn-sm">
+                  <i class="fas fa-edit"></i> Editar
+                </button>
+                <button (click)="mostrarConfirmacionEliminar(servicio)" class="btn btn-danger btn-sm">
+                  <i class="fas fa-trash-alt"></i> Eliminar
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 text-center mt-4">
+      <a (click)="mostrarTodos()" class="btn btn-outline-light"
+        >Ver todos los Servicios <i class="fas fa-arrow-right ms-2"></i
+      ></a>
+    </div>
+  </div>
+</section>
+
+<div class="modal-backdrop" *ngIf="isAnyModalOpen()"></div>
+
+<div class="modal-container" [style.display]="mostrarFormularioFlag ? 'flex' : 'none'">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Agregar Nuevo Servicio</h5>
+        <button type="button" class="btn-close" (click)="ocultarFormulario()"></button>
+      </div>
+      <div class="modal-body">
+        <form (ngSubmit)="mostrarConfirmacion()">
+          <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre del Servicio</label>
+            <input type="text" class="form-control" id="nombre" [(ngModel)]="nuevoServicio.nombre" name="nombre" required>
+          </div>
+          <div class="mb-3">
+            <label for="descripcion" class="form-label">Descripción</label>
+            <textarea class="form-control" id="descripcion" [(ngModel)]="nuevoServicio.descripcion" name="descripcion" rows="3" required></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="imagen_url" class="form-label">URL de la Imagen</label>
+            <input type="text" class="form-control" id="imagen_url" [(ngModel)]="nuevoServicio.imagen_url" name="imagen_url" required>
+          </div>
+          <button type="submit" class="btn btn-primary">Guardar Servicio</button>
+          <button type="button" class="btn btn-secondary ms-2" (click)="ocultarFormulario()">Cancelar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-container" [style.display]="mostrarConfirmacionAgregar ? 'flex' : 'none'">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Confirmar Nuevo Servicio</h5>
+        <button type="button" class="btn-close" (click)="cerrarConfirmacion()"></button>
+      </div>
+      <div class="modal-body">
+        <p>¿Estás seguro de que quieres guardar el servicio de **{{ nuevoServicio.nombre }}**?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="cerrarConfirmacion()">Cancelar</button>
+        <button type="button" class="btn btn-primary" (click)="onAddServicio()">Confirmar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-container" [style.display]="mostrarModalEditarFlag ? 'flex' : 'none'">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Editar Servicio</h5>
+        <button type="button" class="btn-close" (click)="cerrarModalEditar()"></button>
+      </div>
+      <div class="modal-body">
+        <form *ngIf="servicioAEditar" (ngSubmit)="onGuardarEdicion()">
+          <div class="mb-3">
+            <label for="editNombre" class="form-label">Nombre del Servicio</label>
+            <input type="text" class="form-control" id="editNombre" [(ngModel)]="servicioAEditar.nombre" name="editNombre" required>
+          </div>
+          <div class="mb-3">
+            <label for="editDescripcion" class="form-label">Descripción</label>
+            <textarea class="form-control" id="editDescripcion" [(ngModel)]="servicioAEditar.descripcion" name="editDescripcion" rows="3" required></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="editImagenUrl" class="form-label">URL de la Imagen</label>
+            <input type="text" class="form-control" id="editImagenUrl" [(ngModel)]="servicioAEditar.imagen_url" name="editImagenUrl" required>
+          </div>
+          <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+          <button type="button" class="btn btn-secondary ms-2" (click)="cerrarModalEditar()">Cancelar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-container" [style.display]="mostrarConfirmacionEliminarFlag ? 'flex' : 'none'">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Confirmar Eliminación</h5>
+        <button type="button" class="btn-close" (click)="cerrarConfirmacionEliminar()"></button>
+      </div>
+      <div class="modal-body">
+        <p>¿Estás seguro de que quieres eliminar el servicio de **{{ servicioAEliminar?.nombre }}**? Esta acción no se puede deshacer.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="cerrarConfirmacionEliminar()">Cancelar</button>
+        <button type="button" class="btn btn-danger" (click)="onEliminarServicio()">Eliminar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-container" [style.display]="mostrarModalFlag ? 'flex' : 'none'">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Confirmar Solicitud</h5>
+        <button type="button" class="btn-close" (click)="cerrarModal()"></button>
+      </div>
+      <div class="modal-body">
+        <p>¿Estás seguro de que quieres solicitar el servicio de **{{ servicioSeleccionado?.nombre }}**?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="cerrarModal()">Cancelar</button>
+        <button type="button" class="btn btn-primary" (click)="confirmarSolicitud()">Confirmar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-container" [style.display]="mostrarModalTodos ? 'flex' : 'none'">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Todos los Servicios Disponibles</h5>
+        <button type="button" class="btn-close" (click)="cerrarTodos()"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row g-4">
+          <div *ngFor="let servicio of serviciosCompletos" class="col-md-4 col-lg-3">
+            <div class="card game-card h-100">
+              <img [src]="servicio.imagen_url" class="card-img-top" [alt]="servicio.nombre"/>
+              <div class="card-body">
+                <h5 class="card-title">{{ servicio.nombre }}</h5>
+                <p class="card-text text-muted">{{ servicio.descripcion }}</p>
+                <div class="d-grid gap-2 mt-3">
+                  <a (click)="mostrarModal(servicio)" class="btn btn-primary btn-sm">Solicitar</a>
+                  <div *ngIf="isUserLoggedIn" class="mt-2 d-flex justify-content-between">
+                    <button (click)="mostrarModalEditar(servicio)" class="btn btn-warning btn-sm">
+                      <i class="fas fa-edit"></i> Editar
+                    </button>
+                    <button (click)="mostrarConfirmacionEliminar(servicio)" class="btn btn-danger btn-sm">
+                      <i class="fas fa-trash-alt"></i> Eliminar
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="cerrarTodos()">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
